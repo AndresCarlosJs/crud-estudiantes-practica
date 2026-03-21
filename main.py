@@ -104,3 +104,11 @@ def update_student(student_id: int, student: UpdateStudent):
 
     # return updated student
     return students[student_id]
+
+# endpoint to delete an existing student
+@app.delete("/delete-student/{student_id}")
+def delete_student(student_id: int):
+    if student_id not in students:
+        return {"error": "Student doesn't exists"}
+    del students[student_id]
+    return {"Message": "Student deleted successfully"}
