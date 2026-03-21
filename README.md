@@ -36,7 +36,8 @@ venv\Scripts\activate     # Windows
 
 3. Install dependencies:
 ```bash
-pip install fastapi uvicorn
+pip install fastapi uvicorn pydantic
+pip install -r requirements.txt
 ```
 ## 🚀 Running the API
 
