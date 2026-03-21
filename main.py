@@ -16,10 +16,17 @@ students = {
     3: {"name": "Doe", "age": 21, "class": "C"}
 }
 
+# 
 class Student(BaseModel):
     name: str
     age: int
     class_name: str
+
+# 
+class UpdateStudent(BaseModel):
+    name: Optional[str] = None
+    age: Optional[int] = None
+    class_name : Optional[str] = None
 
 # define a route for the root endpoint
 @app.get("/")
@@ -44,9 +51,24 @@ def get_student(* ,student_id : int  ,name : Optional[str] = None,test : int):
             return students[student_id]
     return {"error": "Student not found"}
 
-@app.post("/create_student/{student_id}")
+# define a route to create a new student
+@app.post("/create-student/{student_id}")
 def create_student(student_id:int , student: Student):
     if student_id in students:
         return {"error": "Student ID already exists"}
     students[student_id] = student.dict()
+    return students[student_id]
+
+# 
+@app.put("/update-student/{student_id}")
+def update_student(student_id: int, student: UpdateStudent):
+    if student_id not in students:
+        return {"error": "Student doesn't exists"}
+    if student.name != None:
+        students[student_id]["name"] = student.name
+    if student.age != None:
+        students[student_id]["age"] = student.age
+    if student.class_name != None:
+        students[student_id]["class_name"] = student.class_name
+    students[student_id] = student
     return students[student_id]
