@@ -7,7 +7,62 @@ from fastapi import FastAPI, Path
 from pydantic import BaseModel
 
 # create an instance of the FastAPI application
-app = FastAPI()
+app = FastAPI(
+    title="Student Management API",
+    description="""
+API CRUD pour la gestion des étudiants.
+
+## Fonctionnalités
+- 🔍 Lire les étudiants
+- ➕ Créer un étudiant
+- ✏️ Mettre à jour
+- ❌ Supprimer
+
+## Environnements
+- Production : Vercel
+- Développement : Localhost
+""",
+    version="1.0.0",
+
+    # Contact
+    contact={
+        "name": "Yassine Missaoui",
+        "email": "yassine@email.com",
+    },
+
+    # Licence
+    license_info={
+        "name": "MIT",
+    },
+    # Serveurs
+    servers=[
+        {
+            "url": "https://simple-student-crud-two.vercel.app",
+            "description": "Production server (Vercel)"
+        },
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Local development server"
+        }
+    ],
+
+    # Documentation
+    docs_url="/docs",     # Swagger UI
+    redoc_url="/redoc",   # ReDoc
+    openapi_url="/openapi.json",
+
+    # Organisation des routes
+    openapi_tags=[
+        {
+            "name": "Students",
+            "description": "CRUD operations for students"
+        },
+        {
+            "name": "Search",
+            "description": "Search and filtering operations"
+        }
+    ]
+)
 
 # in-memory database (dictionary) to store student data
 # key = student_id, value = student information
