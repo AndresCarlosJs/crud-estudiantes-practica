@@ -3,6 +3,9 @@ from typing import Optional
 
 from fastapi import FastAPI,Path
 
+#import the pydantic library to create data models
+from pydantic import BaseModel
+
 #create an instance of the fastapi class
 app = FastAPI()
 
@@ -12,6 +15,12 @@ students = {
     2: {"name": "Jane", "age": 22, "class": "B"},
     3: {"name": "Doe", "age": 21, "class": "C"}
 }
+
+class Student(BaseModel):
+    name: str
+    age: int
+    class_name: str
+
 # define a route for the root endpoint
 @app.get("/")
 def index():
@@ -35,3 +44,9 @@ def get_student(* ,student_id : int  ,name : Optional[str] = None,test : int):
             return students[student_id]
     return {"error": "Student not found"}
 
+@app.post("/create_student/{student_id}")
+def create_student(student_id:int , student: Student):
+    if student_id in students:
+        return {"error": "Student ID already exists"}
+    students[student_id] = student.dict()
+    return students[student_id]
