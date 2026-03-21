@@ -28,9 +28,10 @@ def get_students(student_id: int = Path(..., description="The ID of the student 
     return student
 
 # define a route to get student data by name
-@app.get("/get-by-name")
-def get_student(* ,name : Optional[str] = None,test : int):
+@app.get("/get-by-name/{student_id}")
+def get_student(* ,student_id : int  ,name : Optional[str] = None,test : int):
     for student_id in students:
         if students[student_id]["name"] == name:
             return students[student_id]
     return {"error": "Student not found"}
+
