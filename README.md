@@ -99,3 +99,11 @@ FastAPI provides interactive documentation:
 
 ### Yassine Missaoui
 ### GitHub: MissaouiYassine1
+
+
+
+
+
+## Mejoras para la práctica de Gestión de Configuración
+ 
+- Implementación simulada de búsqueda de estudiantes.
