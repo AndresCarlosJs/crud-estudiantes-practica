@@ -102,3 +102,9 @@ FastAPI provides interactive documentation:
 
 
 - Corrección simulada de validación de usuarios.
+
+
+
+## Mejoras para la práctica de Gestión de Configuración
+ 
+- Implementación simulada de búsqueda de estudiantes.
