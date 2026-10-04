@@ -101,6 +101,7 @@ FastAPI provides interactive documentation:
 ### GitHub: MissaouiYassine1
 
 
+- Corrección simulada de validación de usuarios.
 
 
 
